@@ -13,18 +13,15 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
 .titulo {
-    position: fixed;
-    top: 0;
-    margin: 0 5px;
+    margin: 10px 15px 30px 15px;
     text-align: center;
 }
 
-.titulo p{
+.titulo h1{
     color: #75B79E;
     font-size: 56px;
     font-family: roboto;
@@ -38,11 +35,11 @@ body {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    width: 75%;
-    max-width: 1000px;
+    width: 90%;
+    max-width: 1190px;
 }
 
-.cardzinhos {
+.cardzinho {
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
     height: 146px;
@@ -52,6 +49,15 @@ body {
     justify-content: center;
     align-items: center;
     margin: 16px;
+    cursor: pointer;
+}
+
+.invisivel {
+    display: none;
+}
+
+.colorida {
+    background-color: rgb(188, 174, 202);
 }
 
 .parrot {
@@ -59,15 +65,15 @@ body {
     height: 100px;
 }
 
+.parrotinho {
+    width: 65px;
+    height: 65px;
+}
+
 @media (max-width:600px){
 
     .titulo p{
         font-size: 36px;
         line-height: 42px;
-    }
-
-    .cartas {
-        position: absolute;
-        top: 150px;
     }
 }
