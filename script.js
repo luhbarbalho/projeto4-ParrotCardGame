@@ -7,7 +7,7 @@ let contador = 0;
 //*****************PERGUNTA QUANTAS CARTAS NO JOGO + CHECAR SE É PAR E ENTRE 4 E 14*******//
 
 function go(){
-    numCartas = parseInt(prompt("Com quantas cartas quer jogar?"));
+    numCartas = parseInt(prompt("Com quantas cartas quer jogar? Escolha um número par entre 4 e 14"));
     let intervalo = ((numCartas >= 4) && (numCartas <= 14));
 
     while((numCartas%2) !== 0){
@@ -94,20 +94,19 @@ function virar(elemento) {
     parrot.classList.toggle("invisivel")
     parrotinho.classList.toggle("invisivel")
     
-    //if ()
-    if (contClick == 1) {
+    let ePar = (contClick % 2) == 0;
+    let eImpar = (contClick % 2) == 1;
+    
+    if (eImpar) {
         carta1 = parrotinho.children[0].src;
         cartaPai = parrotinho;
         cartaMae = parrot;
-    } if (contClick == 2) {
+    } if (ePar) {
         carta2 = parrotinho.children[0].src;
     }
     
-    if (contClick == 2) {
+    if (ePar) {
         if (carta1 === carta2){
-            contClick = 0;
-            carta1 = "";
-            carta2 = "";
             
         } else {
             setTimeout(desvirar, 1000, carta1);
@@ -119,16 +118,23 @@ function virar(elemento) {
                 console.log(parrot);
                 console.log(parrotinho);
             }
-            contClick = 0;
-            carta1 = "";
-            carta2 = "";
         }
     }
+    ganhei();
 }    
 
 
+function ganhei() {
+    let cartonhas = document.querySelector(".cartas");
 
-    /*if (parrot.classList.contains("invisivel") && parrotinho.classList.contains("invisivel")) {
+        if (cartonhas.querySelectorAll(".parrotFrente.invisivel").length == numCartas) {
+            setTimeout(alert, 1500, `Você ganhou em ${contClick} jogadas!`);
+        }
+}
+
+
+    /*    for(let index = 0; index < ; index++){
+    if (parrot.classList.contains("invisivel"document.querySelector(".cartas").querySelectorAll(".invisivel")) && parrotinho.classList.contains("invisivel")) {
         parrot.classList.toggle("invisivel");
         parrotinho.classList.toggle("invisivel");
     } else {
