@@ -1,8 +1,22 @@
-
-
 let numCartas;
 let contador = 0;
+let textinho;
+let textao = [];
+let contClick = 0;
+let carta1;
+let carta2;
+let cartaPai;
+let contSeg = 0;
+let contMin = 0;
 
+let arrayPapagaios =[
+    "bobrossparrot",
+    "explodyparrot",
+    "fiestaparrot", 
+    "metalparrot",
+    "revertitparrot",
+    "tripletsparrot", 
+    "unicornparrot"];
 
 //*****************PERGUNTA QUANTAS CARTAS NO JOGO + CHECAR SE É PAR E ENTRE 4 E 14*******//
 
@@ -20,21 +34,32 @@ function go(){
     }
     distribuirCartas();
 }
+go();
 
+
+//*********************************** CRONOMETRO ***************************************//
+let cronometro = document.querySelector(".cronometro");
+
+//**********************começa cronometro
+
+function myTimer() {
+    contSeg++;
+
+    if (contSeg > 59) {
+        contSeg = 0
+        contMin = contMin +1;
+    }
+    cronometro.innerHTML = `${contMin} : ${contSeg}`;
+}
+let myInterval = setInterval(myTimer, 1000);
+
+//************************para cronometro
+
+function pararCronometro() {
+    clearInterval(myInterval);
+}
 
 //***********************DISTRIBUI O NUMERO DE CARTAS INFORMADO *************************//
-
-let arrayPapagaios =[
-    "bobrossparrot",
-    "explodyparrot",
-    "fiestaparrot", 
-    "metalparrot",
-    "revertitparrot",
-    "tripletsparrot", 
-    "unicornparrot"];
-
-    let textinho;
-    let textao = [];
 
 function distribuirCartas(quantCartas) {
 
@@ -75,14 +100,7 @@ function distribuirCartas(quantCartas) {
         quantCartas.innerHTML += textao[i];
     }
 }
-
-
-//******************************* VIRAR e COMPARAR AS CARTAS *********************************//
-
-let contClick = 0;
-let carta1;
-let carta2;
-let cartaPai;
+//***************************** VIRAR e COMPARAR AS CARTAS *******************************//
 
 function virar(elemento) {
 
@@ -106,66 +124,31 @@ function virar(elemento) {
     }
     
     if (ePar) {
-        if (carta1 === carta2){
-            
-        } else {
+        if (carta1 !== carta2){
             setTimeout(desvirar, 1000, carta1);
             function desvirar(x){
                 cartaMae.classList.toggle("invisivel");
                 cartaPai.classList.toggle("invisivel");
                 parrot.classList.toggle("invisivel");
                 parrotinho.classList.toggle("invisivel");
-                console.log(parrot);
-                console.log(parrotinho);
             }
         }
     }
     ganhei();
-}    
+}
 
+//********************************** FINALIZA O JOGO ************************************//
 
 function ganhei() {
     let cartonhas = document.querySelector(".cartas");
 
-        if (cartonhas.querySelectorAll(".parrotFrente.invisivel").length == numCartas) {
-            setTimeout(alert, 1500, `Você ganhou em ${contClick} jogadas!`);
+    if (cartonhas.querySelectorAll(".parrotFrente.invisivel").length == numCartas) {
+        if(contMin >= 1) {
+            setTimeout(alert, 1500, `Você ganhou com ${contClick} jogadas em ${contMin} minutos e ${contSeg} segundos!`);
+        } else {
+            setTimeout(alert, 1500, `Você ganhou com ${contClick} jogadas em ${contSeg} segundos!`);
         }
-}
-
-
-    /*    for(let index = 0; index < ; index++){
-    if (parrot.classList.contains("invisivel"document.querySelector(".cartas").querySelectorAll(".invisivel")) && parrotinho.classList.contains("invisivel")) {
-        parrot.classList.toggle("invisivel");
-        parrotinho.classList.toggle("invisivel");
-    } else {
-        parrot.classList.toggle("invisivel")
-        parrotinho.classList.toggle("invisivel")
-    }*/
     
-
-    /*let parrotinho = elemento.querySelector(".parrotVerso")
-    if (parrotinho.classList.contains("invisivel")) {
-        parrotinho.classList.toggle("invisivel");
-    } else {
-        parrotinho.classList.toggle("invisivel")
-    }*/
-
-
-/*function comparação() {
-    clicar a carta 1 e marcar que elemento foi
-    let carta1[0]; - > apontar o 1 elemento virado textao[i]
-    let carta2[1]; - > apontar o segundo elemento virado textao[i]
-
- // if (carta1 === carta2)
-    //manter virado
-    else
-    desvirar as 2
-
-    //segurar as 2 cartas com setTimeout(ou setinterval?) e desvirar depois de 1.5s
-    //para desvirar as cartas, usar clearInterval?
-}*/
-
-
-
-
-//provavelmente para contar o tempo de jogo, é com setinterval 1s  e parar com clearinterval()
+        pararCronometro()
+    }
+}

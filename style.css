@@ -17,8 +17,13 @@ body {
 }
 
 .titulo {
-    margin: 10px 15px 30px 15px;
+    margin: 10px 15px 45px 15px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 80%;
+    height: 22%;
 }
 
 .titulo h1{
@@ -29,6 +34,13 @@ body {
     line-height: 65px;
     display: flex;
     justify-content: center;
+    margin-bottom: 1px;
+}
+
+.cronometro {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
 }
 
 .cartas {
@@ -83,7 +95,7 @@ body {
 
 @media (max-width:600px){
 
-    .titulo p{
+    .titulo h1{
         font-size: 36px;
         line-height: 42px;
     }
