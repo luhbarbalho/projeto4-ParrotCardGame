@@ -8,6 +8,8 @@ let carta2;
 let cartaPai;
 let contSeg = 0;
 let contMin = 0;
+let reiniciar;
+let reboot;
 
 let arrayPapagaios =[
     "bobrossparrot",
@@ -150,5 +152,17 @@ function ganhei() {
         }
     
         pararCronometro()
+        reboot = setTimeout(reiniciarJogo, 2000);
+    }
+}
+
+//********************************** REINICIAR O JOGO ***********************************//
+
+function reiniciarJogo() {
+    reiniciar = prompt("Você quer que o jogo reinicie?");
+    if (reiniciar == "não") {
+        
+    } if (reiniciar == "sim") {
+        window.location.reload();  
     }
 }
