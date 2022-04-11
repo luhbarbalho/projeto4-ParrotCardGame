@@ -50,24 +50,35 @@ body {
     align-items: center;
     margin: 16px;
     cursor: pointer;
+    backface-visibility: visible;
+    transition: all .3s;
 }
+
+.cardzinho:active {
+    transform: rotateY(-180deg);
+}
+
 
 .invisivel {
     display: none;
-}
 
-.colorida {
-    background-color: rgb(188, 174, 202);
 }
 
 .parrot {
     width: 100px;
     height: 100px;
+
 }
 
 .parrotinho {
     width: 65px;
     height: 65px;
+    transform: rotateY(180deg);
+}
+
+.parrotinho:active{
+    transform: rotateY(0deg);
+
 }
 
 @media (max-width:600px){

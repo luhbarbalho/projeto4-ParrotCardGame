@@ -77,21 +77,65 @@ function distribuirCartas(quantCartas) {
 }
 
 
-//*********************************VIRAR AS CARTAS***********************************//
+//******************************* VIRAR e COMPARAR AS CARTAS *********************************//
 
+let contClick = 0;
+let carta1;
+let carta2;
+let cartaPai;
 
 function virar(elemento) {
 
-    
+    contClick++;
+
     let parrot = elemento.querySelector(".parrotFrente");
     let parrotinho = elemento.querySelector(".parrotVerso")
-    if (parrot.classList.contains("invisivel") && parrotinho.classList.contains("invisivel")) {
+
+    parrot.classList.toggle("invisivel")
+    parrotinho.classList.toggle("invisivel")
+    
+    //if ()
+    if (contClick == 1) {
+        carta1 = parrotinho.children[0].src;
+        cartaPai = parrotinho;
+        cartaMae = parrot;
+    } if (contClick == 2) {
+        carta2 = parrotinho.children[0].src;
+    }
+    
+    if (contClick == 2) {
+        if (carta1 === carta2){
+            contClick = 0;
+            carta1 = "";
+            carta2 = "";
+            
+        } else {
+            setTimeout(desvirar, 1000, carta1);
+            function desvirar(x){
+                cartaMae.classList.toggle("invisivel");
+                cartaPai.classList.toggle("invisivel");
+                parrot.classList.toggle("invisivel");
+                parrotinho.classList.toggle("invisivel");
+                console.log(parrot);
+                console.log(parrotinho);
+            }
+            contClick = 0;
+            carta1 = "";
+            carta2 = "";
+        }
+    }
+}    
+
+
+
+    /*if (parrot.classList.contains("invisivel") && parrotinho.classList.contains("invisivel")) {
         parrot.classList.toggle("invisivel");
         parrotinho.classList.toggle("invisivel");
     } else {
         parrot.classList.toggle("invisivel")
         parrotinho.classList.toggle("invisivel")
-    }
+    }*/
+    
 
     /*let parrotinho = elemento.querySelector(".parrotVerso")
     if (parrotinho.classList.contains("invisivel")) {
@@ -99,10 +143,23 @@ function virar(elemento) {
     } else {
         parrotinho.classList.toggle("invisivel")
     }*/
-}
 
-function comparação() {
-    let carta1;
-    let carta2;
-    textinho[i] === textinho[i]
-}
+
+/*function comparação() {
+    clicar a carta 1 e marcar que elemento foi
+    let carta1[0]; - > apontar o 1 elemento virado textao[i]
+    let carta2[1]; - > apontar o segundo elemento virado textao[i]
+
+ // if (carta1 === carta2)
+    //manter virado
+    else
+    desvirar as 2
+
+    //segurar as 2 cartas com setTimeout(ou setinterval?) e desvirar depois de 1.5s
+    //para desvirar as cartas, usar clearInterval?
+}*/
+
+
+
+
+//provavelmente para contar o tempo de jogo, é com setinterval 1s  e parar com clearinterval()
